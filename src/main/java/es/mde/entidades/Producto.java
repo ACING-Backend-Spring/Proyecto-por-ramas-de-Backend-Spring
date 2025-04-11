@@ -78,4 +78,9 @@ public class Producto {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	@Override
+	public String toString() {
+		return getNombre() + " y " + getCliente().getCorreo();
+	}
 }
