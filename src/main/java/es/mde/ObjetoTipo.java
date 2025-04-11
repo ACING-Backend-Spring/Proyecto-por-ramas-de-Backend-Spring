@@ -2,7 +2,7 @@ package es.mde;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("anotacion1")
 public class ObjetoTipo {
 
 	private String nombreObjeto = "Objeto por defecto";

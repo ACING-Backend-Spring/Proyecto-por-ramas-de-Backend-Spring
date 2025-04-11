@@ -2,7 +2,7 @@ package es.mde.SpringBasico;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("anotacion2")
 public class ObjetoTipo extends es.mde.ObjetoTipo {
 
 	@Override
