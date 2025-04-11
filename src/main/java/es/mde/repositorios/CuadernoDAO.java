@@ -5,6 +5,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import es.mde.entidades.Cuaderno;
 
+/**
+ * Representa la interfaz que expone para la API los cuadernos
+ * 
+ * @author JOSE LUIS PUENTES ALAMOS
+ *
+ */
 @RepositoryRestResource(path = "cuadernos", itemResourceRel = "cuaderno", collectionResourceRel = "cuadernos")
 public interface CuadernoDAO extends JpaRepository<Cuaderno, Long> {
 

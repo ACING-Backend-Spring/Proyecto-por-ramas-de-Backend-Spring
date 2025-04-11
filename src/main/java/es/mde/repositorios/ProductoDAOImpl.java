@@ -10,6 +10,11 @@ import es.mde.entidades.Producto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
+/**
+ * Representa la clase implementada con los metodos personalizados de los productos 
+ * @author JOSE LUIS PUENTES ALAMOS
+ *
+ */
 @Transactional(readOnly = true)
 public class ProductoDAOImpl implements ProductoDAOCustom {
 
@@ -19,6 +24,10 @@ public class ProductoDAOImpl implements ProductoDAOCustom {
 	@PersistenceContext
 	EntityManager entityManager;
 
+	/**
+	 * Devuelve una lista de productos de los clientes de una empresa (su correo contiene... "gmail.com"=google...)
+	 * @return Devuelve una lista de productos de los clientes de una empresa (su correo contiene... "gmail.com"=google...)
+	 */
 	@Override
 	public List<Producto> getProductosDeClientesEmpresa(String tipo) {
 

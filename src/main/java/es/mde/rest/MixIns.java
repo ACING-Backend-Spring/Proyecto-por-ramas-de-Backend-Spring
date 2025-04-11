@@ -7,17 +7,34 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+/**
+ * Clase que maneja los MixIns de la API
+ * 
+ * @author JOSE LUIS PUENTES ALAMOS
+ *
+ */
 public class MixIns {
-
+	/**
+	 * Interfaz MixIn para la clase Cliente
+	 * 
+	 */
 	@JsonPropertyOrder({ "nombre", "correo" })
 //	@JsonIgnoreProperties({"correo"})//sino me los estaría creando sin correo
 	public static interface Clientes {
 	}
 
+	/**
+	 * Interfaz MixIn para la clase Libro
+	 * 
+	 */
 	@JsonPropertyOrder({ "nombre", "autor" })
 	public static interface Libros {
 	}
 
+	/**
+	 * Interfaz MixIn para la clase Cuaderno
+	 * 
+	 */
 	@JsonPropertyOrder({ "nombre", "hojas" })
 	public static interface Cuadernos {
 	}
@@ -30,4 +47,5 @@ public class MixIns {
 //		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 //		public Instant getFechaSalida();
 //	}
+	
 }
