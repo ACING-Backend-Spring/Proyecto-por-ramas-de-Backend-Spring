@@ -14,15 +14,18 @@ public class SpringBasicoApplication {
 //		SpringApplication.run(SpringBasicoApplication.class, args);
 
 		ConfigurableApplicationContext context = // mi objeto contenedor
-				new ClassPathXmlApplicationContext(new String[] { "config.xml" // aqui ponemos los archivos de
-																				// configuracion
+				new ClassPathXmlApplicationContext(new String[] {
+//						"config.xml" // aqui ponemos los archivos de
+				// configuracion
 //								,
-//								"config-scan.xml"
-				});
+						"config-scan.xml" });
 		ObjetoTipo miObjetoTipo = new ObjetoTipo();
 		miObjetoTipo.init();
 		miObjetoTipo = context.getBean(ObjetoTipo.class);
 		miObjetoTipo.init();
+
+		context.close();
+
 	}
 
 }

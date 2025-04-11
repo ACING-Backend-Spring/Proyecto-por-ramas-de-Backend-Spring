@@ -1,5 +1,8 @@
 package es.mde;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ObjetoTipo {
 
 	private String nombreObjeto = "Objeto por defecto";
