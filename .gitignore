@@ -38,3 +38,4 @@ out/
 
 ### Logs ###
 /logs
+src/main/resources/config/passwordsBD.properties
