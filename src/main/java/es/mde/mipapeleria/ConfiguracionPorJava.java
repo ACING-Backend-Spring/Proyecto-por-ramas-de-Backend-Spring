@@ -37,8 +37,8 @@ import jakarta.persistence.EntityManagerFactory;
 @PropertySource({ "classpath:config/rest.properties", "classpath:config/jackson.properties", "classpath:config/gestionBBDD.properties"
 //	, "classpath:config/passwordsBD.properties" // se comenta esta linea para que no busque el archivo al compilarse en heroku, ya que no lo hemos subido porque las contraseñas se las proporcionaremos por variables 
 	})
-@EnableJpaRepositories("${misRepositorios}") // leer valor de propiedades? pero solo para las entidades anotadas
-@ComponentScan({ "es.mde.repositorios", "es.mde.rest" }) // para que escanee los Listener y los Controller...
+@EnableJpaRepositories({"${misRepositorios}", "${entidadSecurity}"}) // leer valor de propiedades pero solo para las entidades anotadas
+@ComponentScan({"${misRepositorios}", "es.mde.rest", "es.mde.security"}) // para que escanee los Listener, los Controller y los servicios...
 public class ConfiguracionPorJava {
 
 	/**
@@ -46,6 +46,12 @@ public class ConfiguracionPorJava {
 	 */
 	@Value("${misEntidades}")
 	String entidades;
+
+	/**
+	 * Para usar la ruta a escanear entidades de seguridad desde el application.properties
+	 */
+	@Value("${entidadSecurity}")
+	String entidadSecurity;
 
 	/**
 	 * Entity manager que sustituye al jpa-config.xml
@@ -65,7 +71,7 @@ public class ConfiguracionPorJava {
 //	    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter(); // O pedirlo como parametro y que haga el Autowired
 		em.setJpaVendorAdapter(vendorAdapter);
 
-		em.setPackagesToScan(entidades); // leer valor de propiedades? pero solo para las entidades anotadas
+		em.setPackagesToScan(entidades, entidadSecurity); // leer valor de propiedades? pero solo para las entidades anotadas
 		em.setMappingResources("jpa/Perro.orm.xml", "jpa/Persona.orm.xml", "jpa/Zapato.orm.xml"); // para escanear
 																									// archivos xml...
 		// leerValorDePropiedades?
