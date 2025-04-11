@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component("anotacion1")
 public class ObjetoTipo {
 
-	private String nombreObjeto = "Objeto por defecto";
+	protected String nombreObjeto = "Objeto por defecto";
 
 	// Tiene que tener los getter y setter para ser inyectado
 
