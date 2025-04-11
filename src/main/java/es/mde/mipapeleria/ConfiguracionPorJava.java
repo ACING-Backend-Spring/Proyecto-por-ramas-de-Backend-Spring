@@ -39,6 +39,7 @@ import es.mde.entidades.Cliente;
 import es.mde.entidades.Cuaderno;
 import es.mde.entidades.Libro;
 import es.mde.entidades.Producto;
+import es.mde.rest.ClienteController;
 import es.mde.rest.MixIns;
 import es.mde.rest.ProductoController;
 import jakarta.persistence.EntityManager;
@@ -114,6 +115,7 @@ public class ConfiguracionPorJava {
 	RepresentationModelProcessor<RepositorySearchesResource> addSearchLinks(RepositoryRestConfiguration config) {
 		Map<Class<?>, Class<?>> controllersRegistrados = new HashMap<>();
 		controllersRegistrados.put(Producto.class, ProductoController.class);
+		controllersRegistrados.put(Cliente.class, ClienteController.class);
 
 		return new RepresentationModelProcessor<RepositorySearchesResource>() {
 

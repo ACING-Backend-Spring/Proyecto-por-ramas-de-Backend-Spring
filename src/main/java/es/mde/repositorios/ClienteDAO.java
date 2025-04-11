@@ -7,9 +7,10 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import es.mde.entidades.Cliente;
+import es.mde.entidades.Producto;
 
 @RepositoryRestResource(path = "clientes", itemResourceRel = "cliente", collectionResourceRel = "clientes")
-public interface ClienteDAO extends JpaRepository<Cliente, Long> {
+public interface ClienteDAO extends JpaRepository<Cliente, Long>, ClienteDAOCustom {
 	@RestResource(path = "nombre")
 	List<Cliente> findByNombreIgnoreCaseContaining(String txt);
 
@@ -21,4 +22,5 @@ public interface ClienteDAO extends JpaRepository<Cliente, Long> {
 
 	@RestResource(exported = false)
 	void delete(Cliente cliente);
+
 }
