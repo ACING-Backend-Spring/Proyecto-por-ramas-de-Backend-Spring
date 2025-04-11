@@ -1,0 +1,1869 @@
+{
+	"info": {
+		"_postman_id": "141e3a68-6437-48d0-95d5-31a4d7d2e4ca",
+		"name": "DOCUMENTACIÓN DE LA API PAPELERIA",
+		"description": "Colección para generar la documentación de la aplicación `PAPELERÍA`.  \nSe ha organizado en carpetas separando las distintas entidades de la aplicación.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15313739"
+	},
+	"item": [
+		{
+			"name": "CLIENTES",
+			"item": [
+				{
+					"name": "GET CLIENTES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes",
+							"host": [
+								"{{url}}clientes"
+							]
+						},
+						"description": "Devuelve una lista con todos los clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "GET CLIENTE por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes/:id",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Devuelve el cliente al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH CLIENTE",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFirstName}} {{$randomLastName}}\", \n\"correo\": \"{{$randomEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}clientes/:Id",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "2",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Modifica un `cliente`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL CLIENTE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}clientes/:id",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Elimina un `cliente`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST CLIENTE RANDOM",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var nombres=[\"Jose\",\"Marcos\",\"Carlos\",\"Marta\",\"Pedro\",\"Esti\",\"Ruth\",\"Isabel\",\"Sergio\",\"Rocio\",\"Noelia\",\"Maria\",\"Cande\",\"Miguel\",\"Jandro\"];",
+									"var apellidos=[\"Jose\",\"Marcos\",\"Carlos\",\"Marta\",\"Pedro\",\"Esti\",\"Ruth\",\"Isabel\",\"Sergio\",\"Rocio\",\"Noelia\",\"Maria\",\"Cande\",\"Miguel\",\"Jandro\"]; ",
+									"",
+									"function shuffle(array) {",
+									"      var j, x, i;",
+									"      //Recorremos el array del final hacia delante",
+									"      for (i = array.length - 1; i > 0; i--) {",
+									"        //Generamos una posicion comprendida entre los valores de nuestro array",
+									"        j = Math.floor(Math.random() * (i + 1));",
+									"        // Asignamos el valor de la posición actual a una variable",
+									"        x = array[i];",
+									"        //Intercambiamos los valores de las dos posiciones",
+									"        array[i] = array[j];",
+									"        array[j] = x;",
+									"      }",
+									"    }",
+									"    ",
+									"    const nombre = shuffle(nombres) +\" \" + shuffle(apellidos);",
+									"    const correo = shuffle(nombres) + shuffle(apellidos) + \"@correo.es\"",
+									"    pm.environment.set(\"email\", correo);",
+									"    pm.environment.set(\"nombreapellido\", nombre);",
+									"",
+									"",
+									"   "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFullName}}\", \n\"correo\": \"{{$randomEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}clientes",
+							"host": [
+								"{{url}}clientes"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "correo",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "Crea un `cliente`"
+					},
+					"response": []
+				},
+				{
+					"name": "GET PRODUCTOS PAGADOS DE CLIENTE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes/:id/productos-pagados",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								":id",
+								"productos-pagados"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Devuelve una lista de los productos de un cliente que están `pagados`"
+					},
+					"response": []
+				},
+				{
+					"name": "GET CLIENTE POR NOMBRE",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes/search/nombre?txt=Doyle",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								"search",
+								"nombre"
+							],
+							"query": [
+								{
+									"key": "txt",
+									"value": "Doyle"
+								}
+							]
+						},
+						"description": "Devuelve una lista de clientes cuyo nombre contiene el parametro pasado"
+					},
+					"response": []
+				},
+				{
+					"name": "GET CLIENTES search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes/search",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Devuelve los métodos expuestos en la API nivel 3 HATEOAS"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `CLIENTE`"
+		},
+		{
+			"name": "PERSONAS",
+			"item": [
+				{
+					"name": "GET PERSONAS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}personas",
+							"host": [
+								"{{url}}personas"
+							]
+						},
+						"description": "Devuelve una lista con todas las personas"
+					},
+					"response": []
+				},
+				{
+					"name": "GET PERSONA por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}personas/:id",
+							"host": [
+								"{{url}}personas"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Devuelve la persona a la que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH PERSONA",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFirstName}} {{$randomLastName}}\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}personas/:Id",
+							"host": [
+								"{{url}}personas"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Modifica una `Persona`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL PERSONA",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}personas/:id",
+							"host": [
+								"{{url}}personas"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Elimina una `Persona`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST PERSONA RANDOM",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var nombres=[\"Jose\",\"Marcos\",\"Carlos\",\"Marta\",\"Pedro\",\"Esti\",\"Ruth\",\"Isabel\",\"Sergio\",\"Rocio\",\"Noelia\",\"Maria\",\"Cande\",\"Miguel\",\"Jandro\"];",
+									"var apellidos=[\"Jose\",\"Marcos\",\"Carlos\",\"Marta\",\"Pedro\",\"Esti\",\"Ruth\",\"Isabel\",\"Sergio\",\"Rocio\",\"Noelia\",\"Maria\",\"Cande\",\"Miguel\",\"Jandro\"]; ",
+									"",
+									"function shuffle(array) {",
+									"      var j, x, i;",
+									"      //Recorremos el array del final hacia delante",
+									"      for (i = array.length - 1; i > 0; i--) {",
+									"        //Generamos una posicion comprendida entre los valores de nuestro array",
+									"        j = Math.floor(Math.random() * (i + 1));",
+									"        // Asignamos el valor de la posición actual a una variable",
+									"        x = array[i];",
+									"        //Intercambiamos los valores de las dos posiciones",
+									"        array[i] = array[j];",
+									"        array[j] = x;",
+									"      }",
+									"    }",
+									"    ",
+									"    const nombre = shuffle(nombres) +\" \" + shuffle(apellidos);",
+									"    const correo = shuffle(nombres) + shuffle(apellidos) + \"@correo.es\"",
+									"    pm.environment.set(\"email\", correo);",
+									"    pm.environment.set(\"nombreapellido\", nombre);",
+									"",
+									"",
+									"   "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFullName}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}personas",
+							"host": [
+								"{{url}}personas"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "correo",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "Crea una `Persona`"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `PERSONA`"
+		},
+		{
+			"name": "USUARIOS",
+			"item": [
+				{
+					"name": "GET USUARIOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios",
+							"host": [
+								"{{url}}usuarios"
+							]
+						},
+						"description": "Devuelve una lista con todos los usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIO por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios/:id",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Devuelve el usuario al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIO por username",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbHBhQGdtYWlsLmNvbSIsImlhdCI6MTcxMjc2NTY4MSwiZXhwIjoxNzEyNzY3MTIxfQ.uzaVluCGfFoYGk4Aj_6aiw5lG_rGHcK6C7Oiu7JSMxE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios/search/findByUsername?username=jlpa@gmail.com",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								"search",
+								"findByUsername"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "jlpa@gmail.com"
+								}
+							]
+						},
+						"description": "Devuelve el usuario al que pertenece ese `Username`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH USUARIO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomUserName}}\", \n\"password\": \"{{$randomPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}usuarios/:Id",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Modifica un `usuario`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL USUARIO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}usuarios/:id",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del cliente"
+								}
+							]
+						},
+						"description": "Elimina un `usuario`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST USUARIO RANDOM",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var nombres=[\"Jose\",\"Marcos\",\"Carlos\",\"Marta\",\"Pedro\",\"Esti\",\"Ruth\",\"Isabel\",\"Sergio\",\"Rocio\",\"Noelia\",\"Maria\",\"Cande\",\"Miguel\",\"Jandro\"];",
+									"var apellidos=[\"Jose\",\"Marcos\",\"Carlos\",\"Marta\",\"Pedro\",\"Esti\",\"Ruth\",\"Isabel\",\"Sergio\",\"Rocio\",\"Noelia\",\"Maria\",\"Cande\",\"Miguel\",\"Jandro\"]; ",
+									"",
+									"function shuffle(array) {",
+									"      var j, x, i;",
+									"      //Recorremos el array del final hacia delante",
+									"      for (i = array.length - 1; i > 0; i--) {",
+									"        //Generamos una posicion comprendida entre los valores de nuestro array",
+									"        j = Math.floor(Math.random() * (i + 1));",
+									"        // Asignamos el valor de la posición actual a una variable",
+									"        x = array[i];",
+									"        //Intercambiamos los valores de las dos posiciones",
+									"        array[i] = array[j];",
+									"        array[j] = x;",
+									"      }",
+									"    }",
+									"    ",
+									"    const nombre = shuffle(nombres) +\" \" + shuffle(apellidos);",
+									"    const correo = shuffle(nombres) + shuffle(apellidos) + \"@correo.es\"",
+									"    pm.environment.set(\"email\", correo);",
+									"    pm.environment.set(\"nombreapellido\", nombre);",
+									"",
+									"",
+									"   "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomUserName}}\", \n\"password\": \"{{$randomPassword}}\",\n\"apellido\": \"{{$randomLastName}}\",\n\"pais\": \"{{$randomCountry}}\",\n\"username\": \"{{$randomUserName}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}usuarios",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "correo",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "Crea un `usuario`"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `USUARIO`"
+		},
+		{
+			"name": "PRODUCTOS",
+			"item": [
+				{
+					"name": "GET PRODUCTOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}productos",
+							"host": [
+								"{{url}}productos"
+							]
+						},
+						"description": "Devuelve una lista con todos los productos"
+					},
+					"response": []
+				},
+				{
+					"name": "GET PRODUCTO por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}productos/:id",
+							"host": [
+								"{{url}}productos"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id del producto"
+								}
+							]
+						},
+						"description": "Devuelve el producto al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST PRODUCTO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var miUrl = pm.environment.get(\"url\") + \"clientes\";",
+									"pm.sendRequest(miUrl, function(err, response) {",
+									" var json = response.json();",
+									"const array = [];",
+									"for(let i in json) {",
+									"    array.push([i, json[i]]);",
+									"} ;",
+									" const clientes =array[0][1].clientes;",
+									" const rutasClientes = [];",
+									" for (let i in clientes) {",
+									"    rutasClientes.push(clientes[i]._links.self.href);",
+									" }",
+									"pm.collectionVariables.set(\"clienteRandom\", rutasClientes[Math.floor(Math.random()*rutasClientes.length)]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomProductName}}\",\n\"cliente\": \"{{clienteRandom}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}productos",
+							"host": [
+								"{{url}}productos"
+							]
+						},
+						"description": "Crea un `producto`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH PRODUCTO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomProductName}}\",\n\"cliente\": \"{{url}}clientes/2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}productos/:Id",
+							"host": [
+								"{{url}}productos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "",
+									"description": "Id del producto"
+								}
+							]
+						},
+						"description": "Modifica un `producto`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL PRODUCTO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}productos/:Id",
+							"host": [
+								"{{url}}productos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del producto"
+								}
+							]
+						},
+						"description": "Elimina un `producto`"
+					},
+					"response": []
+				},
+				{
+					"name": "GET PRODUCTOS DE CLIENTES CON GMAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}productos/search/clientes-por-correo?empresa=gmail.com",
+							"host": [
+								"{{url}}productos"
+							],
+							"path": [
+								"search",
+								"clientes-por-correo"
+							],
+							"query": [
+								{
+									"key": "empresa",
+									"value": "gmail.com"
+								}
+							]
+						},
+						"description": "Devuelva una lista de productos de los clientes pertenecientes a una empresa (simulado por el dominio del correo)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET PRODUCTOS SEARCH",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}productos/search",
+							"host": [
+								"{{url}}productos"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Devuelva una lista de productos de los clientes pertenecientes a una empresa (simulado por el dominio del correo)"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `PRODUCTO`"
+		},
+		{
+			"name": "LIBROS",
+			"item": [
+				{
+					"name": "GET LIBROS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}libros",
+							"host": [
+								"{{url}}libros"
+							]
+						},
+						"description": "Devuelve una lista con todos los libros"
+					},
+					"response": []
+				},
+				{
+					"name": "GET LIBRO por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}libros/:Id",
+							"host": [
+								"{{url}}libros"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del libro"
+								}
+							]
+						},
+						"description": "Devuelve el libro al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST LIBRO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var miUrl = pm.environment.get(\"url\") + \"clientes\";",
+									"pm.sendRequest(miUrl, function(err, response) {",
+									" var json = response.json();",
+									"const array = [];",
+									"for(let i in json) {",
+									"    array.push([i, json[i]]);",
+									"} ;",
+									" const clientes =array[0][1].clientes;",
+									" const rutasClientes = [];",
+									" for (let i in clientes) {",
+									"    rutasClientes.push(clientes[i]._links.self.href);",
+									" }",
+									"pm.collectionVariables.set(\"clienteRandom\", rutasClientes[Math.floor(Math.random()*rutasClientes.length)]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomProductName}}\",\n\"autor\": \"{{$randomFullName}}\",\n\"cliente\": \"{{clienteRandom}}\",\n\"pagado\": \"{{$randomBoolean}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}libros",
+							"host": [
+								"{{url}}libros"
+							]
+						},
+						"description": "Crea un `libro`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH LIBRO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomProductName}}\",\n\"autor\": \"{{$randomFullName}}\",\n\"cliente\": \"{{url}}clientes/1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}libros/:Id",
+							"host": [
+								"{{url}}libros"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "",
+									"description": "Id del libro"
+								}
+							]
+						},
+						"description": "Modifica un `libro`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL LIBRO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}libros/:Id",
+							"host": [
+								"{{url}}libros"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "",
+									"description": "Id del libro"
+								}
+							]
+						},
+						"description": "Elimina un `libro`"
+					},
+					"response": []
+				},
+				{
+					"name": "GET LIBROS search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}libros/search",
+							"host": [
+								"{{url}}libros"
+							],
+							"path": [
+								"search"
+							]
+						},
+						"description": "Devuelve los métodos expuestos en la API nivel 3 HATEOAS\n\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "GET LIBROS POR AUTOR  O NOMBRE@Param",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}libros/search/autor-nombre?autor-nombre=Rafa",
+							"host": [
+								"{{url}}libros"
+							],
+							"path": [
+								"search",
+								"autor-nombre"
+							],
+							"query": [
+								{
+									"key": "autor-nombre",
+									"value": "Rafa"
+								}
+							]
+						},
+						"description": "Devuelve un listado de los libros que contienen en su nombre o en su autor el texto pasado"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `LIBRO`"
+		},
+		{
+			"name": "CUADERNOS",
+			"item": [
+				{
+					"name": "GET CUADERNOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}cuadernos",
+							"host": [
+								"{{url}}cuadernos"
+							]
+						},
+						"description": "Devuelve una lista con todos los cuadernos"
+					},
+					"response": []
+				},
+				{
+					"name": "GET CUADERNO por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}cuadernos/:Id",
+							"host": [
+								"{{url}}cuadernos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del cuaderno"
+								}
+							]
+						},
+						"description": "Devuelve el cuaderno al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST CUADERNO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var miUrl = pm.environment.get(\"url\") + \"clientes\";",
+									"pm.sendRequest(miUrl, function(err, response) {",
+									" var json = response.json();",
+									"const array = [];",
+									"for(let i in json) {",
+									"    array.push([i, json[i]]);",
+									"} ;",
+									" const clientes =array[0][1].clientes;",
+									" const rutasClientes = [];",
+									" for (let i in clientes) {",
+									"    rutasClientes.push(clientes[i]._links.self.href);",
+									" }",
+									"pm.collectionVariables.set(\"clienteRandom\", rutasClientes[Math.floor(Math.random()*rutasClientes.length)]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomProductName}}\",\n\"hojas\": \"{{$randomInt}}\",\n\"cliente\": \"{{clienteRandom}}\",\n\"pagado\": \"{{$randomBoolean}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}cuadernos",
+							"host": [
+								"{{url}}cuadernos"
+							]
+						},
+						"description": "Crea un `cuaderno`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH CUADERNO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomProductName}}\",\n\"hojas\": \"{{$randomInt}}\",\n\"cliente\": \"{{url}}clientes/1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}cuadernos/:Id",
+							"host": [
+								"{{url}}cuadernos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "",
+									"description": "Id del cuaderno"
+								}
+							]
+						},
+						"description": "Modifica un `cuaderno`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH PAGAR CUADERNO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"pagado\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}cuadernos/:Id",
+							"host": [
+								"{{url}}cuadernos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "",
+									"description": "Id del cuaderno"
+								}
+							]
+						},
+						"description": "Modifica un `cuaderno`, simulando que se ha pagado"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL CUADERNO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}cuadernos/:Id",
+							"host": [
+								"{{url}}cuadernos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "",
+									"description": "Id del cuaderno"
+								}
+							]
+						},
+						"description": "Elimina un `cuaderno`"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `CUADERNO`"
+		},
+		{
+			"name": "ZAPATOS",
+			"item": [
+				{
+					"name": "GET ZAPATOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}zapatos",
+							"host": [
+								"{{url}}zapatos"
+							]
+						},
+						"description": "Devuelve una lista con todos los `Zapatos`"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ZAPATO por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}zapatos/:Id",
+							"host": [
+								"{{url}}zapatos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del cuaderno"
+								}
+							]
+						},
+						"description": "Devuelve el `Zapato` al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST ZAPATO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var miUrl = pm.environment.get(\"url\") + \"personas\";",
+									"pm.sendRequest(miUrl, function(err, response) {",
+									" var json = response.json();",
+									"const array = [];",
+									"for(let i in json) {",
+									"    array.push([i, json[i]]);",
+									"} ;",
+									" const personas =array[0][1].personas;",
+									" const rutasPersonas = [];",
+									" for (let i in personas) {",
+									"    rutasPersonas.push(personas[i]._links.self.href);",
+									" }",
+									"pm.collectionVariables.set(\"personaRandom\", rutasPersonas[Math.floor(Math.random()*rutasPersonas.length)]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"modelo\": \"{{$randomProductName}}\",\n\"numero\": \"{{$randomInt}}\",\n\"persona\": \"{{personaRandom}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}zapatos",
+							"host": [
+								"{{url}}zapatos"
+							]
+						},
+						"description": "Crea un `Zapato`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH ZAPATO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var miUrl = pm.environment.get(\"url\") + \"personas\";\r",
+									"pm.sendRequest(miUrl, function(err, response) {\r",
+									" var json = response.json();\r",
+									"const array = [];\r",
+									"for(let i in json) {\r",
+									"    array.push([i, json[i]]);\r",
+									"} ;\r",
+									" const personas =array[0][1].personas;\r",
+									" const rutasPersonas = [];\r",
+									" for (let i in personas) {\r",
+									"    rutasPersonas.push(personas[i]._links.self.href);\r",
+									" }\r",
+									"pm.collectionVariables.set(\"personaRandom\", rutasPersonas[Math.floor(Math.random()*rutasPersonas.length)]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"modelo\": \"{{$randomProductName}}\",\n\"numero\": \"{{$randomInt}}\",\n\"persona\": \"{{personaRandom}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}zapatos/:Id",
+							"host": [
+								"{{url}}zapatos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del cuaderno"
+								}
+							]
+						},
+						"description": "Modifica un `Zapato`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL ZAPATO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}zapatos/:Id",
+							"host": [
+								"{{url}}zapatos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "",
+									"description": "Id del cuaderno"
+								}
+							]
+						},
+						"description": "Elimina un `Zapato`"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `ZAPATO`"
+		},
+		{
+			"name": "PERROS",
+			"item": [
+				{
+					"name": "GET PERROS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}perros",
+							"host": [
+								"{{url}}perros"
+							]
+						},
+						"description": "Devuelve una lista con todos los perros"
+					},
+					"response": []
+				},
+				{
+					"name": "GET PERRO por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}perros/:Id",
+							"host": [
+								"{{url}}perros"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del perro"
+								}
+							]
+						},
+						"description": "Devuelve el perro al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST PERRO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFirstName}}\",\n\"size\": \"{{$randomColor}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}perros",
+							"host": [
+								"{{url}}perros"
+							]
+						},
+						"description": "Crea un `perro`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH PERRO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFirstName}}\",\n\"size\": \"{{$randomColor}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}perros/:Id",
+							"host": [
+								"{{url}}perros"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del perro"
+								}
+							]
+						},
+						"description": "Modifica un `perro`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL PERRO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}perros/:Id",
+							"host": [
+								"{{url}}perros"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del perro"
+								}
+							]
+						},
+						"description": "Elimina un `perro`"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `PERRO`"
+		},
+		{
+			"name": "APARATOS",
+			"item": [
+				{
+					"name": "GET APARATOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}aparatos",
+							"host": [
+								"{{url}}aparatos"
+							]
+						},
+						"description": "Devuelve una lista con todos los `aparatos`"
+					},
+					"response": []
+				},
+				{
+					"name": "GET APARATO por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}aparatos/:Id",
+							"host": [
+								"{{url}}aparatos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del perro"
+								}
+							]
+						},
+						"description": "Devuelve el aparato al que pertenece ese `Id`"
+					},
+					"response": []
+				},
+				{
+					"name": "POST APARATO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFirstName}}\",\n\"color\": \"{{$randomColor}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}aparatos",
+							"host": [
+								"{{url}}aparatos"
+							]
+						},
+						"description": "Crea un `aparato`"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH APARATO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\": \"{{$randomFirstName}}\",\n\"color\": \"{{$randomColor}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}aparatos/:Id",
+							"host": [
+								"{{url}}aparatos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del perro"
+								}
+							]
+						},
+						"description": "Modifica un `aparato`"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL APARATO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}aparatos/:Id",
+							"host": [
+								"{{url}}aparatos"
+							],
+							"path": [
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "1",
+									"description": "Id del perro"
+								}
+							]
+						},
+						"description": "Elimina un `aparato`"
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos relacionados con la entidad `APARATO`"
+		},
+		{
+			"name": "REGISTRO-LOGIN",
+			"item": [
+				{
+					"name": "POST REGISTRO",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"jlpa2@gmail.com\",\n    \"password\": \"2112\",\n    \"nombre\": \"joselu\",\n    \"apellido\": \"puentes\",\n    \"pais\": \"españa\",\n    \"rol\": \"USER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}auth/register",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Registra un `usuario` para la autenticación de la API"
+					},
+					"response": []
+				},
+				{
+					"name": "POST LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"jlpa@gmail.com\",\n    \"password\": \"2112\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "Loggea un `usuario` para la autenticación de la API"
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios",
+							"host": [
+								"{{url}}usuarios"
+							]
+						},
+						"description": "Devuelve una lista con todos los `usuarios`"
+					},
+					"response": []
+				}
+			],
+			"description": "Almacena las peticiones para `registrar` o `loggear` un usuario"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "clienteRandom",
+			"value": ""
+		},
+		{
+			"key": "nombreCliente",
+			"value": ""
+		},
+		{
+			"key": "personaRandom",
+			"value": ""
+		}
+	]
+}
