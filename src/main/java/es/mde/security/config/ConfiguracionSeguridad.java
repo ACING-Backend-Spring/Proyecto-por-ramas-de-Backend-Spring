@@ -18,9 +18,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class ConfiguracionSeguridad {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final AuthenticationProvider authProvider;
-	
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+	private final AuthenticationProvider authProvider;
+
 	public ConfiguracionSeguridad(JwtAuthenticationFilter jwtAuthenticationFilter,
 			AuthenticationProvider authProvider) {
 		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
@@ -28,27 +28,17 @@ public class ConfiguracionSeguridad {
 	}
 
 	@Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
-    {
-        return http
-            .csrf(csrf -> 
-                csrf
-                .disable())
-            .authorizeHttpRequests(authRequest ->
-              authRequest
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authRequest -> authRequest
 //              	.requestMatchers(HttpMethod.GET).permitAll()
 //              	.requestMatchers(HttpMethod.OPTIONS).permitAll()
-                .requestMatchers("/api/auth/**").permitAll()//permite registro y logging
-//                .requestMatchers("/api/auth/login").permitAll()//permite solo logging
-                .anyRequest()
-                .authenticated()
-                //.permitAll()
-                )
-            .sessionManagement(sessionManager->
-            sessionManager 
-              .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authenticationProvider(authProvider)
-        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-        .build();
+//              	.requestMatchers("/api/auth/**").permitAll()//permite registro y logging
+				.requestMatchers("/api/auth/login").permitAll()// permite solo logging
+				.anyRequest().authenticated()
+		// .permitAll()
+		).sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authenticationProvider(authProvider)
+				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class).build();
 
-    }}
+	}
+}
