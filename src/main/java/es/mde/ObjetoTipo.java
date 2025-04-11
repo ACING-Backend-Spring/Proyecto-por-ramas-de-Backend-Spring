@@ -1,9 +1,13 @@
 package es.mde;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component("anotacion1")
 public class ObjetoTipo {
+
+	private final Logger log = LoggerFactory.getLogger(ObjetoTipo.class);
 
 	protected String nombreObjeto = "Objeto por defecto";
 
@@ -21,7 +25,7 @@ public class ObjetoTipo {
 	// crearse...
 
 	public void init() {
-		System.err.println(nombreObjeto);
+		log.info("Llamado init(): {}", nombreObjeto);
 	}
 
 }
