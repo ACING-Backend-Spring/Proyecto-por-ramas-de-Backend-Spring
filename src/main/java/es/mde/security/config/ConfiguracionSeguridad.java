@@ -32,8 +32,8 @@ public class ConfiguracionSeguridad {
 		return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authRequest -> authRequest
 //              .requestMatchers(HttpMethod.GET).permitAll()
 //              .requestMatchers(HttpMethod.OPTIONS).permitAll()
-              	.requestMatchers("/api/auth/**").permitAll()//permite registro y logging
-//				.requestMatchers("/api/auth/login").permitAll()// permite solo logging
+//              .requestMatchers("/api/auth/**").permitAll()//permite registro y logging
+				.requestMatchers("/api/auth/login").permitAll()// permite solo logging
 				.anyRequest()
 				.authenticated()
 		// .permitAll()
