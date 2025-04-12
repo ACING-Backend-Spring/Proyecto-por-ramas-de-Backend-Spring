@@ -2,16 +2,15 @@
   "name": "papeleria",
   "version": "1.0.0",
   "scripts": {
-    "build:prod": "ng build --configuration=production",
+"add-hooks": "scripts/add-hooks.sh",
+    "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript",
+    "postinstall": "ng build --configuration production --aot",
     "http-server": "http-server ./dist/papeleria/ -c-1 -p4272 -a localhost -o",
-    "start:prod": "npm run build:prod && npm run http-server",
     "ng": "ng",
-    "start": "ng serve -o --port 4270",
-    "build": "ng build",
+    "start": "node server.js",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "compodoc": "npx compodoc -p tsconfig.doc.json"
+    "e2e": "ng e2e"
   },
   "private": false,
   "dependencies": {
@@ -41,12 +40,14 @@
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.7",
     "tslib": "^2.0.0",
-    "zone.js": "~0.13.3"
-  },
-  "devDependencies": {
+    "zone.js": "~0.13.3",
     "@angular-devkit/build-angular": "~16.2.14",
     "@angular/cli": "~16.2.14",
     "@angular/compiler-cli": "~16.2.12",
+    "typescript": "~4.9.5"
+  },
+  "devDependencies": {
+
     "@angular/language-service": "~16.2.12",
     "@compodoc/compodoc": "^1.1.11",
     "@types/html2canvas": "0.0.36",
@@ -66,5 +67,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
     "typescript": "~4.9.5"
+  },
+  "engines": {
+    "node": "20.13.1",
+    "npm": "10.5.2"
   }
 }
