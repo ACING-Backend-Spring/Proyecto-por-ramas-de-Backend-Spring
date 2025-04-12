@@ -17,11 +17,22 @@ import org.springframework.stereotype.Component;
 
 import es.mde.entidades.Cliente;
 
+/**
+ * Representa la clase que contiene los Listeners de la entidad Cliente
+ * 
+ * @author JOSE LUIS PUENTES ALAMOS
+ *
+ */
 @Component
 public class ClienteListener {
 	private Logger log = LoggerFactory.getLogger(ClienteListener.class);
 	private static ClienteDAO clienteDAO;
 
+	/**
+	 * Crea un ClienteDAO
+	 * 
+	 * @param clienteDAO ClienteDAO inyectado
+	 */
 	@Autowired
 	public void init(ClienteDAO clienteDAO) {
 		this.clienteDAO = clienteDAO;
@@ -46,11 +57,21 @@ public class ClienteListener {
 		}
 	}
 
+	/**
+	 * Crea un Listener que se ejecuta después de borrar un cliente
+	 * 
+	 * @param cliente Cliente que se ha borrado
+	 */
 	@PostRemove
 	public void postBorrar(Cliente cliente) {
 		System.err.println("Se ha borrado al cliente: " + cliente.getNombre());
 	}
 
+	/**
+	 * Crea un Listener que se ejecuta después de actualizar un cliente
+	 * 
+	 * @param cliente Cliente que se ha actualizado
+	 */
 	@PostUpdate
 	public void postActualizar(Cliente cliente) {
 		System.err.println("Se ha actualizado al cliente: " + cliente.getNombre());

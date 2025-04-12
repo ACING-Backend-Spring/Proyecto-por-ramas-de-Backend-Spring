@@ -28,6 +28,12 @@ import es.mde.rest.MixIns;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
+/**
+ * ConfiguracionPorJava va a establecer los parametros configurables en los distintos properties, referenciándolos.
+ * 
+ * @author JOSE LUIS PUENTES ALAMOS
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:config/rest.properties", "classpath:config/jackson.properties", "classpath:config/gestionBBDD.properties"
@@ -36,9 +42,21 @@ import jakarta.persistence.EntityManagerFactory;
 @ComponentScan({ "es.mde.repositorios", "es.mde.rest" }) // para que escanee los Listener y los Controller...
 public class ConfiguracionPorJava {
 
+	/**
+	 * Para usar la ruta a escanear entidades desde el application.properties
+	 */
 	@Value("${misEntidades}")
 	String entidades;
 
+	/**
+	 * Entity manager que sustituye al jpa-config.xml
+	 *
+	 * @param dataSource Parametro del tipo DataSource
+	 * @param env Parametro del tipo Environment
+	 * @param vendorAdapter Parametro del tipo JpaVendorAdapter
+	 * 
+	 * @return Devuelve un "@Bean" de LocalContainerEntityManagerFactory
+	 */
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Environment env,
 			JpaVendorAdapter vendorAdapter) {
@@ -63,6 +81,11 @@ public class ConfiguracionPorJava {
 		return em;
 	}
 
+	/**
+	 * Devuelve un EntityManager
+	 * @param emf Parametro del tipo EntityManagerFactory
+	 * @return Devuelve un EntityManager
+	 */
 	@Bean
 	public EntityManager entityManager(EntityManagerFactory emf) {
 		System.err.println("--- LAS ENTIDADES MAPEADAS SON ---");
@@ -72,6 +95,11 @@ public class ConfiguracionPorJava {
 		return emf.createEntityManager();
 	}
 
+	/**
+	 * Devuelve un ObjectMapper
+	 * 
+	 * @return Devuelve un ObjectMapper
+	 */
 	@Bean
 	public ObjectMapper getObjectMapper() {
 

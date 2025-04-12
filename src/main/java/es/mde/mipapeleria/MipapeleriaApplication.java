@@ -14,11 +14,22 @@ import es.mde.entidades.Producto;
 import es.mde.repositorios.ClienteDAO;
 import es.mde.repositorios.ProductoDAO;
 
+/**
+ * Clase principal de la aplicación.
+ * 
+ * @author JOSE LUIS PUENTES ALAMOS
+ *
+ */
 @SpringBootApplication
 public class MipapeleriaApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(MipapeleriaApplication.class);
 
+	/**
+	 * Método que inicia la API
+	 * 
+	 * @param args Argumentos que se le pueden pasar a la aplicación
+	 */
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(MipapeleriaApplication.class, args);
 
