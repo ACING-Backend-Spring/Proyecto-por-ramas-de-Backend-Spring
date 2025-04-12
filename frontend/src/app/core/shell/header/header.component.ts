@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faWindows } from '@fortawesome/free-brands-svg-icons';
 import { faDotCircle } from '@fortawesome/free-regular-svg-icons';
 import { faAddressBook, faBook, faUser, faUsersCog } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from 'src/app/auth/services/login.service';
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   faAddressBook = faAddressBook;
   faDotCircle = faDotCircle;
   faUsersCog = faUsersCog;
+  faWindows = faWindows;
   static userLoginOn: boolean = false;
   static userloggedAdmin: boolean = false;
   userNameLogged: String;
@@ -47,6 +49,10 @@ export class HeaderComponent implements OnInit {
   }
   static alertLogging() {
     alert("Debes iniciar sesión para acceder al listado")
+  }
+
+  alertLoggingDesktop() {
+    alert("Debes iniciar sesión para descargar la aplicación de escritorio")
   }
 
   static alertLoggingAdmin() {
