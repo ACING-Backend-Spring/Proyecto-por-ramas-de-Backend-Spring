@@ -5,7 +5,7 @@ Este proyecto recoge el código de apoyo para ver los diferentes conceptos de la
 
 Para ello se ha separado en tres ramas:
 
-1. Rama [**conceptos-iniciales**](https://git.institutomilitar.com/backend-spring/proyecto-asignatura-por-ramas/-/commits/conceptos-iniciales), donde se utiliza un proyecto SpringBoot sencillo para ver los conceptos iniciales de Spring y la utilización de Spring Boot.
+1. Rama [**conceptos-iniciales**](https://github.com/ACING-Backend-Spring/Proyecto-por-ramas-de-Backend-Spring/commits/conceptos-iniciales), donde se utiliza un proyecto SpringBoot sencillo para ver los conceptos iniciales de Spring y la utilización de Spring Boot.
 
     Para ello se ha separado o dividido el proyecto en los siguientes _**commits**_:
     
@@ -18,7 +18,7 @@ Para ello se ha separado en tres ramas:
     - Logging
     - Inyección de dependencias y @Autowired 
 
-1. Rama [**persistencia-xml-clase-externa-onetomany**](https://git.institutomilitar.com/backend-spring/proyecto-asignatura-por-ramas/-/commits/persistencia-xml-clase-externa-onetomany), donde se crea un proyecto de SpringBoot sencillo para realizar una API completa nivel 3 HATEOAS, usando archivos XML para poder persistir objetos que heredan de clases externas a la API. Incluye tanto la persistencia de las entidades, metodos personalizados..., incluyendo el despliegue en la nube (tanto de la Base de Datos como de la API).
+1. Rama [**persistencia-xml-clase-externa-onetomany**](https://github.com/ACING-Backend-Spring/Proyecto-por-ramas-de-Backend-Spring/commits/persistencia-xml-clase-externa-onetomany), donde se crea un proyecto de SpringBoot sencillo para realizar una API completa nivel 3 HATEOAS, usando archivos XML para poder persistir objetos que heredan de clases externas a la API. Incluye tanto la persistencia de las entidades, metodos personalizados..., incluyendo el despliegue en la nube (tanto de la Base de Datos como de la API).
 
     Para ello se ha separado o dividido el proyecto en los siguientes _**commits**_:
     
@@ -46,7 +46,7 @@ Para ello se ha separado en tres ramas:
     - Prohibiendo registro de nuevos usuarios
     - Añadiendo colección de postman al proyecto
 
-1. Rama [**persistencia-xml-clase-externa-no-onetomany**](https://git.institutomilitar.com/backend-spring/proyecto-asignatura-por-ramas/-/commits/persistencia-xml-clase-externa-no-onetomany), donde se crea un proyecto de SpringBoot sencillo para realizar una API completa nivel 3 HATEOAS, usando archivos XML para poder persistir objetos que heredan de clases externas a la API. Incluye tanto la persistencia de las entidades, metodos personalizados..., incluyendo el despliegue en la nube (tanto de la Base de Datos como de la API).
+1. Rama [**persistencia-xml-clase-externa-no-onetomany**](https://github.com/ACING-Backend-Spring/Proyecto-por-ramas-de-Backend-Spring/commits/persistencia-xml-clase-externa-no-onetomany), donde se crea un proyecto de SpringBoot sencillo para realizar una API completa nivel 3 HATEOAS, usando archivos XML para poder persistir objetos que heredan de clases externas a la API. Incluye tanto la persistencia de las entidades, metodos personalizados..., incluyendo el despliegue en la nube (tanto de la Base de Datos como de la API).
 
     La diferencia de la rama anterior es que anteriormente ha dejado de funcionar correctamente la relación _**one to many**_ sobre clases externas usando archivos XML (con alguna actualización de SpringBoot y Gradle), no pudiendose utilizar la librería externa con relaciones "one to many". Esta rama se ha creado por si se repitiese esta situación, ya que se enfocan de distinto modo las sesiones de persistencia por XML.
 
